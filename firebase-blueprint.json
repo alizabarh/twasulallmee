@@ -1,0 +1,144 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "displayName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "photoURL": { "type": "string" },
+        "headerURL": { "type": "string" },
+        "bio": { "type": "string" },
+        "followersCount": { "type": "number" },
+        "followingCount": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "displayName", "email"]
+    },
+    "Post": {
+      "title": "Post",
+      "description": "A social media post",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorPhoto": { "type": "string" },
+        "content": { "type": "string" },
+        "imageURL": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "likesCount": { "type": "number" },
+        "repostsCount": { "type": "number" },
+        "commentsCount": { "type": "number" },
+        "viewsCount": { "type": "number" }
+      },
+      "required": ["authorId", "content", "timestamp"]
+    },
+    "Like": {
+      "title": "Like",
+      "description": "A like on a post",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "postId": { "type": "string" }
+      },
+      "required": ["userId", "postId"]
+    },
+    "Repost": {
+      "title": "Repost",
+      "description": "A repost of a post",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "postId": { "type": "string" }
+      },
+      "required": ["userId", "postId"]
+    },
+    "Follow": {
+      "title": "Follow",
+      "description": "A follow relationship",
+      "type": "object",
+      "properties": {
+        "followerId": { "type": "string" },
+        "followingId": { "type": "string" }
+      },
+      "required": ["followerId", "followingId"]
+    },
+    "Message": {
+      "title": "Message",
+      "description": "A direct message between users",
+      "type": "object",
+      "properties": {
+        "senderId": { "type": "string" },
+        "receiverId": { "type": "string" },
+        "content": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["senderId", "receiverId", "content", "timestamp"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "A notification for a user",
+      "type": "object",
+      "properties": {
+        "toId": { "type": "string" },
+        "fromId": { "type": "string" },
+        "fromName": { "type": "string" },
+        "fromPhoto": { "type": "string" },
+        "type": { "type": "string", "enum": ["like", "follow", "repost", "comment"] },
+        "postId": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["toId", "fromId", "type", "timestamp"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "A comment on a post",
+      "type": "object",
+      "properties": {
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorPhoto": { "type": "string" },
+        "content": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["authorId", "content", "timestamp"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/posts/{postId}": {
+      "schema": "Post",
+      "description": "Social media posts"
+    },
+    "/likes/{likeId}": {
+      "schema": "Like",
+      "description": "Post likes"
+    },
+    "/follows/{followId}": {
+      "schema": "Follow",
+      "description": "Follow relationships"
+    },
+    "/messages/{messageId}": {
+      "schema": "Message",
+      "description": "Direct messages"
+    },
+    "/reposts/{repostId}": {
+      "schema": "Repost",
+      "description": "Post reposts"
+    },
+    "/notifications/{notifId}": {
+      "schema": "Notification",
+      "description": "User notifications"
+    },
+    "/posts/{postId}/comments/{commentId}": {
+      "schema": "Comment",
+      "description": "Post comments"
+    }
+  }
+}

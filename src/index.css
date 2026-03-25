@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #0f1419;
+  --border-color: #eff3f4;
+  --accent-color: #1d9bf0;
+  --secondary-text: #536471;
+  --hover-color: #f7f7f7;
+}
+
+.dark {
+  --bg-color: #000000;
+  --text-color: #e7e9ea;
+  --border-color: #2f3336;
+  --accent-color: #1d9bf0;
+  --secondary-text: #71767b;
+  --hover-color: #181818;
+}
+
+.dim {
+  --bg-color: #15202b;
+  --text-color: #ffffff;
+  --border-color: #38444d;
+  --accent-color: #1d9bf0;
+  --secondary-text: #8899a6;
+  --hover-color: #1e2732;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.border-twitter {
+  border-color: var(--border-color);
+}
+
+.text-twitter-secondary {
+  color: var(--secondary-text);
+}
+
+.bg-twitter-hover:hover {
+  background-color: var(--hover-color);
+}
